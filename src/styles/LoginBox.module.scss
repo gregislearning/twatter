@@ -1,7 +1,37 @@
-.loginBox {
+.container {
     display: flex;
     flex-direction: column;
+    margin-top: 10%;
+    justify-content: center;
     align-items: center;
+}
+
+.loginForm {
     width: 20%;
-    border: 1px solid grey;
+    border: 1px solid #cfcfcf;
+    padding: 15px;
+    border-radius: 5%;
+}
+
+.rememberMe {
+    font-size: 14px;
+}
+
+.forgotPassword {
+    
+    margin-left: 10px;
+}
+
+.mutedText {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.loginButton {
+    width: 100%
+}
+
+.signUpHide {
+    display: none;
 }

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Context } from "../context/Store";
 import { Redirect } from "react-router-dom";
+import { useAuth } from '../context/AuthContext'
 
 const ProtectedRoute = (props) => {
-  const [loginState, setLoginState] = useContext(Context);
-  console.log(loginState);
+  const { currentUser } = useAuth()
+  
   const Component = props.component;
-  return loginState.loginStatus ? <Component /> : <Redirect to="/" />;
+  return currentUser ? <Component /> : <Redirect to="/" />;
 };
 
 export default ProtectedRoute;
