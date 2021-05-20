@@ -6,16 +6,19 @@ import Home from "./components/Home";
 import Store from "./context/Store";
 import { Provider } from "react-redux";
 import store from "./models";
+import { AuthProvider } from './context/AuthContext'
 
 //context
 
 export default function App() {
   return (
-    <div className="App">
+    <AuthProvider>
+    <div className="App"> 
       <Router>
         <Provider store={store}>
           <Store>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" render={() => <Login val="login"/>} />
+            <Route path="/signup" render={() => <Login val="signup"/>} />
             <Switch>
               <ProtectedRoute exact path="/home" component={Home} />
             </Switch>
@@ -23,5 +26,7 @@ export default function App() {
         </Provider>
       </Router>
     </div>
+    </AuthProvider>
+    
   );
 }
