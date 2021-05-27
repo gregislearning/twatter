@@ -12,21 +12,18 @@ import { AuthProvider } from './context/AuthContext'
 
 export default function App() {
   return (
-    <AuthProvider>
-    <div className="App"> 
-      <Router>
-        <Provider store={store}>
-          <Store>
-            <Route exact path="/" render={() => <Login val="login"/>} />
-            <Route path="/signup" render={() => <Login val="signup"/>} />
-            <Switch>
-              <ProtectedRoute exact path="/home" component={Home} />
-            </Switch>
-          </Store>
-        </Provider>
-      </Router>
-    </div>
-    </AuthProvider>
-    
+    <Router>
+      <AuthProvider>
+        <div className="App"> 
+            <Provider store={store}>
+              <Switch>
+                <Route exact path="/" render={() => <Login val="login"/>} />
+                <Route path="/signup" render={() => <Login val="signup"/>} />
+                <ProtectedRoute path="/home" component={Home} />
+              </Switch>
+            </Provider>
+        </div>
+      </AuthProvider>
+    </Router>
   );
 }
