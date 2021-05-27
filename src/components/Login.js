@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button'
 import { Context } from "../context/Store";
 
 const Login = ({val}) => {
-  const [loginState, setLoginState] = useContext(Context);
   const [reqFulfilled, setReqFulfilled] = useState(false)
   const [emailVal, setEmailVal] = useState("")
   const [passVal, setPassVal] = useState("")
