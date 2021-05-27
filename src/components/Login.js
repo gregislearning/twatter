@@ -20,7 +20,7 @@ const Login = ({val}) => {
     return input.charAt(0).toUpperCase() + input.slice(1);
   }
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault()
     if (val === "signup" && confirmPassVal !== passVal) {
       alert("not matched")
@@ -32,18 +32,19 @@ const Login = ({val}) => {
     }
     else if (val === "login") {
       try {
-        login(emailVal, passVal)
+        await login(emailVal, passVal)
+        history.push('/home')
       }
       catch {
         setError("Invalid Credentials")
       }
-      history.push('/home')
+      
     }
   }
   return (
     <div className={styles.container}>
       <h1>{Capitalize(val)}</h1>
-      <Form className={styles.loginForm}>
+      <Form className={styles.loginForm} onSubmit={handleSubmit}>
         {error && <Alert variant='danger'>{error}</Alert>}
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
@@ -81,8 +82,8 @@ const Login = ({val}) => {
           </div>
         </Form.Group>
         <Button 
-          variant="primary" 
-          onClick={handleSubmit} 
+          variant="primary"
+          type="submit"
           className={styles.loginButton}>
           Submit
         </Button>
