@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useAuth } from '../context/AuthContext'
 import styles from '../styles/LoginBox.module.scss'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { Context } from "../context/Store";
 
 const Login = ({val}) => {
   const [reqFulfilled, setReqFulfilled] = useState(false)
