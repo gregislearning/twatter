@@ -4,12 +4,15 @@ import { useAuth } from '../context/AuthContext'
 import styles from '../styles/LoginBox.module.scss'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
+import { Context } from "../context/Store";
 
 const Login = ({val}) => {
   const [reqFulfilled, setReqFulfilled] = useState(false)
   const [emailVal, setEmailVal] = useState("")
   const [passVal, setPassVal] = useState("")
   const [confirmPassVal, setConfirmPassVal] = useState("")
+  const [error, setError] = useState()
   const { signup, login } = useAuth()
   const history = useHistory();
 
@@ -28,7 +31,12 @@ const Login = ({val}) => {
       history.push('/home')
     }
     else if (val === "login") {
-      login(emailVal, passVal)
+      try {
+        login(emailVal, passVal)
+      }
+      catch {
+        setError("Invalid Credentials")
+      }
       history.push('/home')
     }
   }
@@ -36,6 +44,7 @@ const Login = ({val}) => {
     <div className={styles.container}>
       <h1>{Capitalize(val)}</h1>
       <Form className={styles.loginForm}>
+        {error && <Alert variant='danger'>{error}</Alert>}
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control 
