@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 import { useAuth } from '../context/AuthContext'
 import styles from '../styles/LoginBox.module.scss'
 import Form from 'react-bootstrap/Form'
@@ -13,7 +13,7 @@ const Login = ({val}) => {
   const [passVal, setPassVal] = useState("")
   const [confirmPassVal, setConfirmPassVal] = useState("")
   const [error, setError] = useState()
-  const { signup, login } = useAuth()
+  const { signup, login, currentUser } = useAuth()
   const history = useHistory();
 
   const Capitalize = (input) => {
@@ -38,10 +38,9 @@ const Login = ({val}) => {
       catch {
         setError("Invalid Credentials")
       }
-      
     }
   }
-  return (
+  return currentUser ? <Redirect to="/home" /> : (
     <div className={styles.container}>
       <h1>{Capitalize(val)}</h1>
       <Form className={styles.loginForm} onSubmit={handleSubmit}>
@@ -89,6 +88,6 @@ const Login = ({val}) => {
         </Button>
       </Form>
     </div>
-  );
+  )
 };
 export default Login;

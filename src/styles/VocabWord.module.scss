@@ -1,0 +1,9 @@
+.wordContainer {
+  width: 250px;
+  height: 15%;
+  border: 1px solid gray;
+}
+
+.wordContainerReveal {
+  transform: rotateY(180deg);
+}

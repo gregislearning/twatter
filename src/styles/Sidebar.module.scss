@@ -1,0 +1,126 @@
+.sidebarActive {
+  position: fixed;
+  color: white;
+  margin-top: 56px;
+  min-height: 100vh !important;
+  z-index: 10;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  border: 1px solid gray;
+  background-color: #6998CF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 850ms;
+  width: 230px;
+}
+.profileContainer {
+  font-family: "Oxygen";
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  height: 100px;
+  margin: 15px 10px 25px;
+  .avatar {
+    position: absolute;
+    left: 18px;
+
+  }
+  .username {
+    font-family: "Oxygen";
+    font-size: large;
+    position: relative;
+    right: -15px;
+    // transition: display 850ms;
+  }
+  .usernameHidden {
+    display: none;
+    // transition: 850ms;
+  }
+}
+.tester {
+  // border-bottom: 1px solid gray;
+  font-family: "Oxygen";
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  height: 100px;
+  margin: 15px 10px 25px;
+  transition: 0.1s;
+    &:hover {
+      transform: scale(1.1);
+    // box-shadow:inset 0 0 1;
+    //   svg {
+    //     transform: scale(1.1);
+    //   }
+    //   span {
+    //     transform: scale(1.1);
+    //   }
+    // span:hover {
+    //   transform: scale(1.1);
+    // }
+  }
+}
+
+.sidebarShrunk {
+  color: white;
+  position: fixed;
+  margin-top: 55px;
+  min-height: 100vh !important;
+  z-index: 10;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  border: 1px solid gray;
+  background-color: #6998CF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75px;
+  transition: 850ms;
+}
+
+.sidebarHidden {
+  display: none;
+}
+
+.burgerContainer {
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  align-items: center;
+  background-color: #E1E1E1;
+  display: flex;
+  height: 55px;
+  width: 75px !important;
+  justify-content: center;
+  transition: transform .5s;
+    svg:hover {
+      box-shadow:inset 0 0 1;
+      transform: scale(1.1);
+    }
+  
+  .list {
+    position: relative;
+    left: -5px;
+    cursor: pointer;
+    transition: transform .3s;
+    margin: auto;
+  }
+  .lefty {
+    transition: transform .3s;
+    position: relative;
+    right: -14px; 
+  }
+  .leftyHidden {
+    visibility: hidden;
+  }
+}
+
+.lastName {
+  font-family: "Oxygen-Bold";
+}
+
+.sidebarText {
+  margin-left: 10px; 
+}
+
+.sidebarTextHidden {
+  display: none;
+}
