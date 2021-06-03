@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 import { useAuth } from '../context/AuthContext'
 import styles from '../styles/LoginBox.module.scss'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
+import { Context } from "../context/Store";
 
 const Login = ({val}) => {
   const [reqFulfilled, setReqFulfilled] = useState(false)
   const [emailVal, setEmailVal] = useState("")
   const [passVal, setPassVal] = useState("")
   const [confirmPassVal, setConfirmPassVal] = useState("")
-  const { signup, login } = useAuth()
+  const [error, setError] = useState()
+  const { signup, login, currentUser } = useAuth()
   const history = useHistory();
 
   const Capitalize = (input) => {
     return input.charAt(0).toUpperCase() + input.slice(1);
   }
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault()
     if (val === "signup" && confirmPassVal !== passVal) {
       alert("not matched")
@@ -28,14 +31,20 @@ const Login = ({val}) => {
       history.push('/home')
     }
     else if (val === "login") {
-      login(emailVal, passVal)
-      history.push('/home')
+      try {
+        await login(emailVal, passVal)
+        history.push('/home')
+      }
+      catch {
+        setError("Invalid Credentials")
+      }
     }
   }
-  return (
+  return currentUser ? <Redirect to="/home" /> : (
     <div className={styles.container}>
       <h1>{Capitalize(val)}</h1>
-      <Form className={styles.loginForm}>
+      <Form className={styles.loginForm} onSubmit={handleSubmit}>
+        {error && <Alert variant='danger'>{error}</Alert>}
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control 
@@ -72,13 +81,13 @@ const Login = ({val}) => {
           </div>
         </Form.Group>
         <Button 
-          variant="primary" 
-          onClick={handleSubmit} 
+          variant="primary"
+          type="submit"
           className={styles.loginButton}>
           Submit
         </Button>
       </Form>
     </div>
-  );
+  )
 };
 export default Login;

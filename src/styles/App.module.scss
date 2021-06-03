@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Oxygen";
+  src: url('./fonts/Oxygen/Oxygen-Regular.ttf')
+}
+@font-face {
+  font-family: "Oxygen-Bold";
+  src: url('./fonts/Oxygen/Oxygen-Bold.ttf')
+}
+@font-face {
+  font-family: "Oxygen-Light";
+  src: url('./fonts/Oxygen/Oxygen-Light.ttf')
+}
+.appContainer {
+  display: flex;
+  width: 100%
+}
+
+.sidebarHidden {
+  display: none;
+}
